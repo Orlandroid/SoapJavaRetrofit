@@ -75,13 +75,18 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryList(requestCountrysList).enqueue(new Callback<ResponseCountryListEnvelop>() {
             @Override
             public void onResponse(Call<ResponseCountryListEnvelop> call, Response<ResponseCountryListEnvelop> response) {
-                Log.w("ANDORID SUCCES", String.valueOf(response.code()));
-                _getListaCountry.setValue(response.body());
+                if (response.code() == 200) {
+                    _getListaCountry.setValue(response.body());
+                } else {
+                    _msjError.setValue(ERROR_SERVIDOR);
+                    _msjError.setValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseCountryListEnvelop> call, Throwable t) {
                 _msjError.setValue(t.getMessage());
+                _msjError.setValue(null);
             }
         });
     }
@@ -94,16 +99,20 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCapitalCity(requestCapitalCity).enqueue(new Callback<ResponseCapitalCityEnvelope>() {
             @Override
             public void onResponse(Call<ResponseCapitalCityEnvelope> call, Response<ResponseCapitalCityEnvelope> response) {
-                Log.w("ANDORID SUCCES", String.valueOf(response.code()));
-                String capitalCity = response.body().getResponseBody().getCapitalCityResult().getCapitalCityResult();
-                _capitalCity.setValue(capitalCity);
-                _capitalCity.setValue(null);
+                if (response.code() == 200) {
+                    String capitalCity = response.body().getResponseBody().getCapitalCityResult().getCapitalCityResult();
+                    _capitalCity.setValue(capitalCity);
+                    _capitalCity.setValue(null);
+                } else {
+                    _msjError.setValue(ERROR_SERVIDOR);
+                    _msjError.setValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseCapitalCityEnvelope> call, Throwable t) {
-                Log.w("ANDORID ERROR", t.getMessage());
                 _msjError.setValue(ERROR_SERVIDOR);
+                _msjError.setValue(null);
             }
         });
     }
@@ -116,14 +125,19 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryCurrency(requestCountryCurrency).enqueue(new Callback<ResponseCountryCurrencyEnvelope>() {
             @Override
             public void onResponse(Call<ResponseCountryCurrencyEnvelope> call, Response<ResponseCountryCurrencyEnvelope> response) {
-                Log.w("ANDORID SUCCES", String.valueOf(response.code()));
-                _countryCurrency.setValue(response.body().getResponseBody().getCountryCurrencyResponse().getResponseCountryCurrencyResult());
-                _countryCurrency.setValue(null);
+                if (response.code() == 200) {
+                    _countryCurrency.setValue(response.body().getResponseBody().getCountryCurrencyResponse().getResponseCountryCurrencyResult());
+                    _countryCurrency.setValue(null);
+                } else {
+                    _msjError.setValue(ERROR_SERVIDOR);
+                    _msjError.setValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseCountryCurrencyEnvelope> call, Throwable t) {
                 _msjError.setValue(ERROR_SERVIDOR);
+                _msjError.setValue(null);
             }
         });
     }
@@ -137,16 +151,19 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryFlag(requestCountryFlag).enqueue(new Callback<ResponseEnvelopeCountryFlag>() {
             @Override
             public void onResponse(Call<ResponseEnvelopeCountryFlag> call, Response<ResponseEnvelopeCountryFlag> response) {
-                Log.w("FLAG",response.toString());
-                Log.w("ANDOROID FLAG", response.body().getResponseBody().getResponseCountryFlagResponse().getCountryFlagResultUrl());
-                _countryFlag.setValue(response.body().getResponseBody().getResponseCountryFlagResponse());
-                _countryFlag.setValue(null);
+                if (response.code() == 200) {
+                    _countryFlag.setValue(response.body().getResponseBody().getResponseCountryFlagResponse());
+                    _countryFlag.setValue(null);
+                } else {
+                    _msjError.setValue(ERROR_SERVIDOR);
+                    _msjError.setValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseEnvelopeCountryFlag> call, Throwable t) {
-                Log.w("ERROR",t.getMessage());
                 _msjError.setValue(ERROR_SERVIDOR);
+                _msjError.setValue(null);
             }
         });
     }
@@ -159,14 +176,19 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryPhoneCode(requestCountryIntPhoneCode).enqueue(new Callback<ResponseCountryIntPhoneCodeEnvelope>() {
             @Override
             public void onResponse(Call<ResponseCountryIntPhoneCodeEnvelope> call, Response<ResponseCountryIntPhoneCodeEnvelope> response) {
-                Log.w("ANDORID SUCCES", String.valueOf(response.code()));
-                _countryIntPhoneCode.setValue(response.body().getResponseBody().getCountryIntPhoneCodeResponse().getCountryIntPhoneCodeResult());
-                _countryIntPhoneCode.setValue(null);
+                if (response.code() == 200) {
+                    _countryIntPhoneCode.setValue(response.body().getResponseBody().getCountryIntPhoneCodeResponse().getCountryIntPhoneCodeResult());
+                    _countryIntPhoneCode.setValue(null);
+                } else {
+                    _msjError.setValue(ERROR_SERVIDOR);
+                    _msjError.setValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseCountryIntPhoneCodeEnvelope> call, Throwable t) {
                 _msjError.setValue(ERROR_SERVIDOR);
+                _msjError.setValue(null);
             }
         });
     }

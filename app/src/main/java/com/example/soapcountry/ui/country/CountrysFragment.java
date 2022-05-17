@@ -24,18 +24,20 @@ import com.example.soapcountry.R;
 import com.example.soapcountry.databinding.FragmentCountrysBinding;
 import com.example.soapcountry.model.response.listcountry.CountryCodeAndName;
 import com.example.soapcountry.ui.country.adapters.CountryAdapter;
+import com.example.soapcountry.util.AlertDialogMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-public class CountrysFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class CountrysFragment extends Fragment implements SearchView.OnQueryTextListener , AlertDialogMessage.ClickOnDialog {
 
     private FragmentCountrysBinding binding;
     private CountryViewModel viewModel;
     private CountryAdapter countryAdapter;
     List<CountryCodeAndName> countryList = new ArrayList<>();
+    private AlertDialogMessage alertDialogMessage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,15 +66,22 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
 
 
     private void setUpObservers() {
-        viewModel.getListaCountry().observe(getViewLifecycleOwner(), responseCountryListEnvelop -> {
+        viewModel.getListaCountry().observe(getViewLifecycleOwner(), response -> {
+            if (response == null) {
+                return;
+            }
             List<CountryCodeAndName> listaCountry = new ArrayList<>();
             binding.progressBar.setVisibility(View.INVISIBLE);
-            listaCountry.addAll(responseCountryListEnvelop.getBody().getListOfCountryNamesByNameResponse().getListOfCountryNamesByNameResponse().getCountryCodeAndName());
+            listaCountry.addAll(response.getBody().getListOfCountryNamesByNameResponse().getListOfCountryNamesByNameResponse().getCountryCodeAndName());
             Collections.sort(listaCountry, CountryCodeAndName.SortDecending);
             mostrarItems(listaCountry);
         });
-        viewModel.msjError().observe(getViewLifecycleOwner(), response -> {
-            Toast.makeText(requireContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
+        viewModel.msjError().observe(getViewLifecycleOwner(), respose -> {
+            if (respose == null) {
+                return;
+            }
+            alertDialogMessage = new AlertDialogMessage(respose,this);
+            alertDialogMessage.show(requireFragmentManager(), "Dialog");
         });
     }
 
@@ -90,7 +99,6 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
         }
         countryAdapter.setData(listRecycler);
     }
-
 
 
     private boolean existHeader(String month, ArrayList<CountryCodeAndName> list) {
@@ -125,4 +133,8 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
     }
 
 
+    @Override
+    public void clickOnAcept() {
+        requireActivity().finish();
+    }
 }
