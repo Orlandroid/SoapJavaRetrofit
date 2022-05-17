@@ -77,6 +77,7 @@ public class CountryViewModel extends ViewModel {
             public void onResponse(Call<ResponseCountryListEnvelop> call, Response<ResponseCountryListEnvelop> response) {
                 if (response.code() == 200) {
                     _getListaCountry.setValue(response.body());
+                    _getListaCountry.setValue(null);
                 } else {
                     _msjError.setValue(ERROR_SERVIDOR);
                     _msjError.setValue(null);

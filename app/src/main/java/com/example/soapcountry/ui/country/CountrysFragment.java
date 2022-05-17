@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -61,7 +62,17 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
                 Navigation.findNavController(getView()).navigate(CountrysFragmentDirections.actionCountrysFragmentToCountryFragment(country.getsISOCode(), country.getsName()));
             }
         });
+        countryAdapter.setData(new ArrayList<>());
         binding.recyclerCountrys.setAdapter(countryAdapter);
+        binding.swiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                countryAdapter.setData(new ArrayList<>());
+                viewModel.getCountrList();
+                binding.swiperefreshlayout.setRefreshing(false);
+                binding.progressBar.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 

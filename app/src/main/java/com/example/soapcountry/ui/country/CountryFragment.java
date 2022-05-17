@@ -7,11 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.soapcountry.databinding.FragmentCountryBinding;
 import com.example.soapcountry.util.AlertDialogMessage;
@@ -41,6 +39,9 @@ public class CountryFragment extends Fragment implements AlertDialogMessage.Clic
         countryCode = CountryFragmentArgs.fromBundle(getArguments()).getCountryCode();
         countryName = CountryFragmentArgs.fromBundle(getArguments()).getCountryName();
         showSkeletons();
+        binding.toolbarLayout.backIconToolbar.setOnClickListener(view -> {
+            Navigation.findNavController(getView()).popBackStack();
+        });
         binding.tvPais.setText(countryName);
         viewModel.getCountryFlag(countryCode);
         viewModel.getCapitalCity(countryCode);
@@ -99,7 +100,7 @@ public class CountryFragment extends Fragment implements AlertDialogMessage.Clic
 
     @Override
     public void clickOnAcept() {
-       Navigation.findNavController(getView()).popBackStack();
+        Navigation.findNavController(getView()).popBackStack();
     }
 
 }

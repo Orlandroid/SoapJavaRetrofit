@@ -4,7 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_title_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.faltenreich.skeletonlayout.SkeletonLayout
         android:id="@+id/skeletonImage"
@@ -14,7 +19,8 @@
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_layout">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
