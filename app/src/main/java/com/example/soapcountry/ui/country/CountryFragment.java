@@ -40,9 +40,9 @@ public class CountryFragment extends Fragment {
         showSkeletons();
         binding.tvPais.setText(countryName);
         viewModel.getCountryFlag(countryCode);
-        viewModel.getCapitalCity(countryCode);
-        viewModel.getCountryCurrency(countryCode);
-        viewModel.getCountryIntPhoneCode(countryCode);
+        //viewModel.getCapitalCity(countryCode);
+        //viewModel.getCountryCurrency(countryCode);
+        //viewModel.getCountryIntPhoneCode(countryCode);
     }
 
     private void showSkeletons(){

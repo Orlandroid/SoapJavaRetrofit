@@ -145,7 +145,8 @@ public class CountryViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<ResponseEnvelopeCountryFlag> call, Throwable t) {
-                _msjError.setValue("Error");
+                Log.w("ERROR",t.getMessage());
+                _msjError.setValue(ERROR_SERVIDOR);
             }
         });
     }
