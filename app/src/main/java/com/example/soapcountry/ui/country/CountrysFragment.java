@@ -90,11 +90,12 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
             if (response == null) {
                 return;
             }
-            List<CountryCodeAndName> listaCountry = new ArrayList<>();
             binding.progressBar.setVisibility(View.INVISIBLE);
-            listaCountry.addAll(response.getBody().getListOfCountryNamesByNameResponse().getListOfCountryNamesByNameResponse().getCountryCodeAndName());
-            Collections.sort(listaCountry, CountryCodeAndName.SortDecending);
-            mostrarItems(listaCountry);
+            //eliminamos elementos para evitar duplicador
+            countryList.clear();
+            countryList.addAll(response.getBody().getListOfCountryNamesByNameResponse().getListOfCountryNamesByNameResponse().getCountryCodeAndName());
+            Collections.sort(countryList, CountryCodeAndName.SortDecending);
+            mostrarItems(countryList);
         });
         viewModel.msjError().observe(getViewLifecycleOwner(), respose -> {
             if (respose == null) {
@@ -148,7 +149,16 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        //Toast.makeText(requireContext(), "Query", Toast.LENGTH_SHORT).show();
+        if (newText.isEmpty()) {
+            mostrarItems(countryList);
+        } else {
+            if (countryAdapter.filter(newText).size() != 0) {
+                binding.empty.setVisibility(View.INVISIBLE);
+                mostrarItems(countryAdapter.filter(newText));
+            } else {
+                binding.empty.setVisibility(View.VISIBLE);
+            }
+        }
         return false;
     }
 

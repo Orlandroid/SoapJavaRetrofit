@@ -105,7 +105,7 @@ public class CountryAdapter extends RecyclerView.Adapter {
         }
 
         public void BindView(CountryCodeAndName country) {
-            title.setText(country.getsName());
+            title.setText(country.getsName().substring(0, 1));
         }
     }
 
