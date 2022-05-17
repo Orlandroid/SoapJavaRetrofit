@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.soapcountry.databinding.ActivityMainBinding;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
