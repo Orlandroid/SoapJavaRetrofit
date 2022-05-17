@@ -8,4 +8,8 @@ public class CapitalResult {
 
     @Element(name = "CapitalCityResult")
     private String capitalCityResult;
+
+    public String getCapitalCityResult() {
+        return capitalCityResult;
+    }
 }

@@ -10,4 +10,12 @@ public class ResponseCountryCurrencyResult {
 
     @Element(name = "sName",required = false)
     private String sName;
+
+    public String getIsoCode() {
+        return isoCode;
+    }
+
+    public String getsName() {
+        return sName;
+    }
 }

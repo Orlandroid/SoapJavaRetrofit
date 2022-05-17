@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="divisor">#3C3C435C</color>
+    <color name="color_day_header">#F2F2F7</color>
+    <color name="card_color">#FFFFFF</color>
+    <color name="grayOption">#A5ADBA</color>
+    <color name="division_card_color">#D1CDCD</color>
+    <color name="background">#FFFFFF</color>
+    <color name="color_blue"> #0521BC</color>
 </resources>

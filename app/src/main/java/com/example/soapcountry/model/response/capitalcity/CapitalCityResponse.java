@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class CapitalCityResponse {
     @Element(name = "CapitalCityResponse")
     private CapitalResult capitalCityResult;
+
+    public CapitalResult getCapitalCityResult() {
+        return capitalCityResult;
+    }
 }

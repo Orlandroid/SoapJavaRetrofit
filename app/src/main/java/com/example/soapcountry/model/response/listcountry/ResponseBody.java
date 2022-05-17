@@ -9,4 +9,8 @@ public class ResponseBody {
 
     @Element(name = "ListOfCountryNamesByNameResponse",required = false)
     private ListOfCountryNamesByNameResponse listOfCountryNamesByNameResponse;
+
+    public ListOfCountryNamesByNameResponse getListOfCountryNamesByNameResponse() {
+        return listOfCountryNamesByNameResponse;
+    }
 }

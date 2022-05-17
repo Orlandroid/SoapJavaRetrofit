@@ -8,4 +8,7 @@ public class ResponseBody {
     @Element(name = "CountryCurrencyResponse", required = false)
     private ResponseCountryCurrencyResponse countryCurrencyResponse;
 
+    public ResponseCountryCurrencyResponse getCountryCurrencyResponse() {
+        return countryCurrencyResponse;
+    }
 }

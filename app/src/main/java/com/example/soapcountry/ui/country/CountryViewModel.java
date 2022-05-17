@@ -14,6 +14,8 @@ import com.example.soapcountry.model.request.countryIntPhoneCode.RequestCountryI
 import com.example.soapcountry.model.request.listcountrys.RequestCountrysList;
 import com.example.soapcountry.model.response.capitalcity.ResponseCapitalCityEnvelope;
 import com.example.soapcountry.model.response.countryCurrency.ResponseCountryCurrencyEnvelope;
+import com.example.soapcountry.model.response.countryCurrency.ResponseCountryCurrencyResult;
+import com.example.soapcountry.model.response.countryFlag.ResponseCountryFlagResponse;
 import com.example.soapcountry.model.response.countryFlag.ResponseEnvelopeCountryFlag;
 import com.example.soapcountry.model.response.countryIntPhoneCode.ResponseCountryIntPhoneCodeEnvelope;
 import com.example.soapcountry.model.response.listcountry.ResponseCountryListEnvelop;
@@ -25,11 +27,46 @@ import retrofit2.Response;
 
 public class CountryViewModel extends ViewModel {
 
+    private static final String ERROR_SERVIDOR = "Error en el servidor";
+
     public MutableLiveData<ResponseCountryListEnvelop> _getListaCountry = new MutableLiveData<>();
 
     public LiveData<ResponseCountryListEnvelop> getListaCountry() {
         return _getListaCountry;
     }
+
+    private MutableLiveData<String> _msjError = new MutableLiveData<>();
+
+    public LiveData<String> msjError() {
+        return _msjError;
+    }
+
+    private MutableLiveData<ResponseCountryFlagResponse> _countryFlag = new MutableLiveData<>();
+
+    public LiveData<ResponseCountryFlagResponse> countryFlag() {
+        return _countryFlag;
+    }
+
+
+    private MutableLiveData<String> _capitalCity = new MutableLiveData<>();
+
+    public LiveData<String> capitalCity() {
+        return _capitalCity;
+    }
+
+
+    private MutableLiveData<ResponseCountryCurrencyResult> _countryCurrency = new MutableLiveData<>();
+
+    public LiveData<ResponseCountryCurrencyResult> countryCurrency() {
+        return _countryCurrency;
+    }
+
+    private MutableLiveData<String> _countryIntPhoneCode = new MutableLiveData<>();
+
+    public LiveData<String> countryIntPhoneCode() {
+        return _countryIntPhoneCode;
+    }
+
 
     public void getCountrList() {
         RequestCountrysList requestCountrysList = new RequestCountrysList();
@@ -38,13 +75,13 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryList(requestCountrysList).enqueue(new Callback<ResponseCountryListEnvelop>() {
             @Override
             public void onResponse(Call<ResponseCountryListEnvelop> call, Response<ResponseCountryListEnvelop> response) {
-                Log.w("ANDORID SUCCES", response.toString());
+                Log.w("ANDORID SUCCES", String.valueOf(response.code()));
                 _getListaCountry.setValue(response.body());
             }
 
             @Override
             public void onFailure(Call<ResponseCountryListEnvelop> call, Throwable t) {
-                Log.w("ERROR", "Error en la respuesta " + t.getMessage());
+                _msjError.setValue(t.getMessage());
             }
         });
     }
@@ -58,16 +95,19 @@ public class CountryViewModel extends ViewModel {
             @Override
             public void onResponse(Call<ResponseCapitalCityEnvelope> call, Response<ResponseCapitalCityEnvelope> response) {
                 Log.w("ANDORID SUCCES", String.valueOf(response.code()));
-                Log.w("ANDORID",response.toString());
+                String capitalCity = response.body().getResponseBody().getCapitalCityResult().getCapitalCityResult();
+                _capitalCity.setValue(capitalCity);
             }
+
             @Override
             public void onFailure(Call<ResponseCapitalCityEnvelope> call, Throwable t) {
-                Log.w("ANDORID ERROR",t.getMessage());
+                Log.w("ANDORID ERROR", t.getMessage());
+                _msjError.setValue(ERROR_SERVIDOR);
             }
         });
     }
 
-    public void getCountryCurrency(String countryCode){
+    public void getCountryCurrency(String countryCode) {
         RequestCountryCurrency requestCountryCurrency = new RequestCountryCurrency();
         requestCountryCurrency.setSoapBody(new RequestCountryCurrency.Body());
         requestCountryCurrency.getSoapBody().setCountryCurrency(new RequestCountryCurrency.CountryCurrency());
@@ -75,18 +115,19 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryCurrency(requestCountryCurrency).enqueue(new Callback<ResponseCountryCurrencyEnvelope>() {
             @Override
             public void onResponse(Call<ResponseCountryCurrencyEnvelope> call, Response<ResponseCountryCurrencyEnvelope> response) {
-                Log.w("RESPONSE",response.toString());
+                Log.w("ANDORID SUCCES", String.valueOf(response.code()));
+                _countryCurrency.setValue(response.body().getResponseBody().getCountryCurrencyResponse().getResponseCountryCurrencyResult());
             }
 
             @Override
             public void onFailure(Call<ResponseCountryCurrencyEnvelope> call, Throwable t) {
-                Log.w("FAILURE",t.getMessage());
+                _msjError.setValue(ERROR_SERVIDOR);
             }
         });
     }
 
 
-    public void getCountryFlag(String countryCode){
+    public void getCountryFlag(String countryCode) {
         RequestCountryFlag requestCountryFlag = new RequestCountryFlag();
         requestCountryFlag.setSoapBody(new RequestCountryFlag.Body());
         requestCountryFlag.getSoapBody().setCountryFlag(new RequestCountryFlag.CountryFlag());
@@ -94,17 +135,19 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryFlag(requestCountryFlag).enqueue(new Callback<ResponseEnvelopeCountryFlag>() {
             @Override
             public void onResponse(Call<ResponseEnvelopeCountryFlag> call, Response<ResponseEnvelopeCountryFlag> response) {
-
+                Log.w("FLAG",response.toString());
+                Log.w("ANDOROID FLAG", response.body().getResponseBody().getResponseCountryFlagResponse().getCountryFlagResultUrl());
+                _countryFlag.setValue(response.body().getResponseBody().getResponseCountryFlagResponse());
             }
 
             @Override
             public void onFailure(Call<ResponseEnvelopeCountryFlag> call, Throwable t) {
-
+                _msjError.setValue("Error en el wey");
             }
         });
     }
 
-    public void getCountryIntPhoneCode(String countryCode){
+    public void getCountryIntPhoneCode(String countryCode) {
         RequestCountryIntPhoneCode requestCountryIntPhoneCode = new RequestCountryIntPhoneCode();
         requestCountryIntPhoneCode.setSoapBody(new RequestCountryIntPhoneCode.Body());
         requestCountryIntPhoneCode.getSoapBody().setCountryIntPhoneCode(new RequestCountryIntPhoneCode.CountryIntPhoneCode());
@@ -112,12 +155,13 @@ public class CountryViewModel extends ViewModel {
         RetrofitInstance.getCountryService().getCountryPhoneCode(requestCountryIntPhoneCode).enqueue(new Callback<ResponseCountryIntPhoneCodeEnvelope>() {
             @Override
             public void onResponse(Call<ResponseCountryIntPhoneCodeEnvelope> call, Response<ResponseCountryIntPhoneCodeEnvelope> response) {
-                Log.w("ANDORID",response.toString());
+                Log.w("ANDORID SUCCES", String.valueOf(response.code()));
+                _countryIntPhoneCode.setValue(response.body().getResponseBody().getCountryIntPhoneCodeResponse().getCountryIntPhoneCodeResult());
             }
 
             @Override
             public void onFailure(Call<ResponseCountryIntPhoneCodeEnvelope> call, Throwable t) {
-
+                _msjError.setValue(ERROR_SERVIDOR);
             }
         });
     }

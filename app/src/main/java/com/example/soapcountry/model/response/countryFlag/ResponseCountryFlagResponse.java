@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseCountryFlagResponse {
     @Element(name = "CountryFlagResult",required = false)
     private String countryFlagResultUrl;
+
+    public String getCountryFlagResultUrl() {
+        return countryFlagResultUrl;
+    }
 }

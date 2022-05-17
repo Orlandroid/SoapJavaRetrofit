@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseBody {
     @Element(name = "countryFlagResponse",required = false)
     private ResponseCountryFlagResponse responseCountryFlagResponse;
+
+    public ResponseCountryFlagResponse getResponseCountryFlagResponse() {
+        return responseCountryFlagResponse;
+    }
 }

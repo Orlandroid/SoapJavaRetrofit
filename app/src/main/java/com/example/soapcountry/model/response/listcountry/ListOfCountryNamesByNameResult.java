@@ -9,4 +9,8 @@ import java.util.List;
 public class ListOfCountryNamesByNameResult {
     @ElementList(inline = true, entry = "tCountryCodeAndName",required = false)
     private List<CountryCodeAndName> countryCodeAndName;
+
+    public List<CountryCodeAndName> getCountryCodeAndName() {
+        return countryCodeAndName;
+    }
 }

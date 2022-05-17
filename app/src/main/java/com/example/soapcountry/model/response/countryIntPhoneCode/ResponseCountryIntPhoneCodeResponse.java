@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseCountryIntPhoneCodeResponse {
     @Element(name = "CountryIntPhoneCodeResult",required = false)
     private String countryIntPhoneCodeResult;
+
+    public String getCountryIntPhoneCodeResult() {
+        return countryIntPhoneCodeResult;
+    }
 }

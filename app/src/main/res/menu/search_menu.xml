@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        android:iconTint="@color/color_blue"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:title="search"
+        android:enabled="true"
+        android:visible="true"/>
+    <item
+        android:id="@+id/search2"
+        android:icon="@drawable/ic_search"
+        android:iconTint="@color/color_blue"
+        app:showAsAction="always"
+        android:title="search"
+        android:enabled="true"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/ic_perfil"
+        app:showAsAction="always|collapseActionView"
+        android:title="Profile"
+        android:enabled="true"
+        android:visible="false"/>
+
+</menu>

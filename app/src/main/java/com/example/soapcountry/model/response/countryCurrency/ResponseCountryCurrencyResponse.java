@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseCountryCurrencyResponse {
     @Element(name = "CountryCurrencyResult",required = false)
     private ResponseCountryCurrencyResult responseCountryCurrencyResult;
+
+    public ResponseCountryCurrencyResult getResponseCountryCurrencyResult() {
+        return responseCountryCurrencyResult;
+    }
 }

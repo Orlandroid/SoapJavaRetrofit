@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseCountryIntPhoneCodeEnvelope {
     @Element(name = "Body",required = false)
     private ResponseBody responseBody;
+
+    public ResponseBody getResponseBody() {
+        return responseBody;
+    }
 }

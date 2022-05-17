@@ -8,4 +8,7 @@ public class ResponseBody {
     @Element(name = "CountryIntPhoneCodeResponse",required = false)
     private ResponseCountryIntPhoneCodeResponse countryIntPhoneCodeResponse;
 
+    public ResponseCountryIntPhoneCodeResponse getCountryIntPhoneCodeResponse() {
+        return countryIntPhoneCodeResponse;
+    }
 }

@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseCountryCurrencyEnvelope {
     @Element(name = "Body")
     private ResponseBody responseBody;
+
+    public ResponseBody getResponseBody() {
+        return responseBody;
+    }
 }

@@ -7,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseCapitalCityEnvelope {
     @Element(name = "Body")
     private CapitalCityResponse responseBody;
+
+    public CapitalCityResponse getResponseBody() {
+        return responseBody;
+    }
 }

@@ -9,4 +9,7 @@ public class ListOfCountryNamesByNameResponse {
     @Element(name = "ListOfCountryNamesByNameResult",required = false)
     private ListOfCountryNamesByNameResult listOfCountryNamesByNameResponse;
 
+    public ListOfCountryNamesByNameResult getListOfCountryNamesByNameResponse() {
+        return listOfCountryNamesByNameResponse;
+    }
 }

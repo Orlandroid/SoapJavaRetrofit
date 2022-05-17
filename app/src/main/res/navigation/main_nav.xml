@@ -18,5 +18,14 @@
         android:id="@+id/countryFragment"
         android:name="com.example.soapcountry.ui.country.CountryFragment"
         android:label="fragment_country"
-        tools:layout="@layout/fragment_country" />
+        tools:layout="@layout/fragment_country" >
+        <argument
+            android:name="countryCode"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="countryName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

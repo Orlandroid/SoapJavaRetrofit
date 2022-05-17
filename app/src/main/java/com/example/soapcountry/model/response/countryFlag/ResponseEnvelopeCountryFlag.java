@@ -1,7 +1,5 @@
 package com.example.soapcountry.model.response.countryFlag;
 
-import com.example.soapcountry.model.response.countryCurrency.ResponseBody;
-
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -9,4 +7,8 @@ import org.simpleframework.xml.Root;
 public class ResponseEnvelopeCountryFlag {
     @Element(name = "Body",required = false)
     private ResponseBody responseBody;
+
+    public ResponseBody getResponseBody() {
+        return responseBody;
+    }
 }
