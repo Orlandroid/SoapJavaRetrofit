@@ -6,14 +6,14 @@ import org.simpleframework.xml.Root;
 @Root(name = "Envelope", strict = false)
 public class ResponseCountryListEnvelop {
 
-    @Element(name = "Body")
-    private ResponseCountryListBody body;
+    @Element(name = "Body",required = false)
+    private ResponseBody body;
 
-    public ResponseCountryListBody getBody() {
+    public ResponseBody getBody() {
         return body;
     }
 
-    public void setBody(ResponseCountryListBody body) {
+    public void setBody(ResponseBody body) {
         this.body = body;
     }
 }

@@ -27,7 +27,6 @@ public class RequestCountrysList {
     public static class ListaBody {
 
         @Element(name = "ListOfCountryNamesByName", required = false)
-        @Namespace(reference = "http://www.oorsprong.org/websamples.countryinfo")
         private ListOfCountryNamesByName listOfCountryNamesByName;
 
         public ListOfCountryNamesByName getListOfCountryNamesByName() {
@@ -41,6 +40,7 @@ public class RequestCountrysList {
     }
 
     @Root(name = "ListOfCountryNamesByName")
+    @Namespace(reference = "http://www.oorsprong.org/websamples.countryinfo")
     public static class ListOfCountryNamesByName {
 
     }

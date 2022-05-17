@@ -1,7 +1,6 @@
 package com.example.soapcountry.model.response.listcountry;
 
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Path;
 import org.simpleframework.xml.Root;
 
 @Root(name = "tCountryCodeAndName",strict = false)

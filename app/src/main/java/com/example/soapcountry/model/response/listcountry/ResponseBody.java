@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 
 @Root(name = "Body", strict = false)
-public class ResponseCountryListBody {
+public class ResponseBody {
 
     @Element(name = "ListOfCountryNamesByNameResponse",required = false)
     private ListOfCountryNamesByNameResponse listOfCountryNamesByNameResponse;

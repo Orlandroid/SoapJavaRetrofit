@@ -28,7 +28,7 @@ public class CountrysFragment extends Fragment {
     }
 
     private void setUpUi() {
-        viewModel.getCountryIntPhoneCode("MX");
+        viewModel.getCountrList();
         binding.textView2.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(CountrysFragmentDirections.actionCountrysFragmentToCountryFragment());
         });
