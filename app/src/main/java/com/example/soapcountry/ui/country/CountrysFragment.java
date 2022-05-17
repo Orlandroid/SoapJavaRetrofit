@@ -4,6 +4,8 @@ package com.example.soapcountry.ui.country;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -45,16 +47,23 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
                              Bundle savedInstanceState) {
         binding = FragmentCountrysBinding.inflate(inflater);
         viewModel = new ViewModelProvider(getActivity()).get(CountryViewModel.class);
-        setHasOptionsMenu(true);
         setUpUi();
         setUpObservers();
         return binding.getRoot();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     private void setUpUi() {
         viewModel.getCountrList();
         binding.progressBar.setVisibility(View.VISIBLE);
-        binding.toolbarLayout.toolbarTitle.setText("Países");
+        //binding.toolbarLayout.toolbarTitle.setText("Países");
+        ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbarLayout.toolbar);
+        //((AppCompatActivity)getActivity()).getActionBar().setTitle("ddedede");
         countryAdapter = new CountryAdapter();
         countryAdapter.setListener(new CountryAdapter.ClickOnCountry() {
             @Override
@@ -133,13 +142,13 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        Toast.makeText(requireContext(), "Submit", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(requireContext(), "Submit", Toast.LENGTH_SHORT).show();
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        Toast.makeText(requireContext(), "Query", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(requireContext(), "Query", Toast.LENGTH_SHORT).show();
         return false;
     }
 

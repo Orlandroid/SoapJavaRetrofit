@@ -11,5 +11,21 @@
         android:title="search"
         android:enabled="true"
         android:visible="true"/>
+    <item
+        android:id="@+id/search2"
+        android:icon="@drawable/ic_search"
+        android:iconTint="@color/color_blue"
+        app:showAsAction="always"
+        android:title="search"
+        android:enabled="true"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/ic_perfil"
+        app:showAsAction="always|collapseActionView"
+        android:title="Profile"
+        android:enabled="true"
+        android:visible="false"/>
 
 </menu>
