@@ -97,6 +97,7 @@ public class CountryViewModel extends ViewModel {
                 Log.w("ANDORID SUCCES", String.valueOf(response.code()));
                 String capitalCity = response.body().getResponseBody().getCapitalCityResult().getCapitalCityResult();
                 _capitalCity.setValue(capitalCity);
+                _capitalCity.setValue(null);
             }
 
             @Override
@@ -117,6 +118,7 @@ public class CountryViewModel extends ViewModel {
             public void onResponse(Call<ResponseCountryCurrencyEnvelope> call, Response<ResponseCountryCurrencyEnvelope> response) {
                 Log.w("ANDORID SUCCES", String.valueOf(response.code()));
                 _countryCurrency.setValue(response.body().getResponseBody().getCountryCurrencyResponse().getResponseCountryCurrencyResult());
+                _countryCurrency.setValue(null);
             }
 
             @Override
@@ -138,11 +140,12 @@ public class CountryViewModel extends ViewModel {
                 Log.w("FLAG",response.toString());
                 Log.w("ANDOROID FLAG", response.body().getResponseBody().getResponseCountryFlagResponse().getCountryFlagResultUrl());
                 _countryFlag.setValue(response.body().getResponseBody().getResponseCountryFlagResponse());
+                _countryFlag.setValue(null);
             }
 
             @Override
             public void onFailure(Call<ResponseEnvelopeCountryFlag> call, Throwable t) {
-                _msjError.setValue("Error en el wey");
+                _msjError.setValue("Error");
             }
         });
     }
@@ -157,6 +160,7 @@ public class CountryViewModel extends ViewModel {
             public void onResponse(Call<ResponseCountryIntPhoneCodeEnvelope> call, Response<ResponseCountryIntPhoneCodeEnvelope> response) {
                 Log.w("ANDORID SUCCES", String.valueOf(response.code()));
                 _countryIntPhoneCode.setValue(response.body().getResponseBody().getCountryIntPhoneCodeResponse().getCountryIntPhoneCodeResult());
+                _countryIntPhoneCode.setValue(null);
             }
 
             @Override

@@ -37,6 +37,7 @@ public class CountryFragment extends Fragment {
     private void setUpUi() {
         countryCode = CountryFragmentArgs.fromBundle(getArguments()).getCountryCode();
         countryName = CountryFragmentArgs.fromBundle(getArguments()).getCountryName();
+        showSkeletons();
         binding.tvPais.setText(countryName);
         viewModel.getCountryFlag(countryCode);
         viewModel.getCapitalCity(countryCode);
@@ -44,22 +45,44 @@ public class CountryFragment extends Fragment {
         viewModel.getCountryIntPhoneCode(countryCode);
     }
 
+    private void showSkeletons(){
+        binding.skeletonPais.showSkeleton();
+        binding.skeletonCapital.showSkeleton();
+        binding.skeletonMoneda.showSkeleton();
+        binding.skeletonCodigoTelefono.showSkeleton();
+    }
+
     @SuppressLint("SetTextI18n")
     private void setUpObservers() {
         viewModel.countryFlag().observe(getViewLifecycleOwner(), response -> {
+            if (response == null){
+                return;
+            }
             Toast.makeText(requireContext(), response.getCountryFlagResultUrl(), Toast.LENGTH_SHORT).show();
             Log.w("IMAGE", response.getCountryFlagResultUrl());
             Picasso.get().load(response.getCountryFlagResultUrl()).into(binding.imageView);
         });
         viewModel.capitalCity().observe(getViewLifecycleOwner(), response -> {
-            Log.w("CAPITAL", response);
+            if (response == null){
+                return;
+            }
             binding.tvCapital.setText(response);
+            binding.skeletonPais.showOriginal();
+            binding.skeletonCapital.showOriginal();
         });
-        viewModel.countryCurrency().observe(getViewLifecycleOwner(), reponse -> {
-            binding.tvMoneda.setText(reponse.getsName() + " (" + reponse.getIsoCode() + ")");
+        viewModel.countryCurrency().observe(getViewLifecycleOwner(), response -> {
+            if (response == null){
+                return;
+            }
+            binding.tvMoneda.setText(response.getsName() + " (" + response.getIsoCode() + ")");
+            binding.skeletonMoneda.showOriginal();
         });
         viewModel.countryIntPhoneCode().observe(getViewLifecycleOwner(), response -> {
+            if (response == null){
+                return;
+            }
             binding.tvCodigoTelefono.setText(response);
+            binding.skeletonCodigoTelefono.showOriginal();
         });
     }
 

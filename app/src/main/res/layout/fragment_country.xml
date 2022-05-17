@@ -58,7 +58,7 @@
                         android:textColor="@color/black" />
 
                     <com.faltenreich.skeletonlayout.SkeletonLayout
-                        android:id="@+id/skeletonFamiliar"
+                        android:id="@+id/skeletonPais"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -114,7 +114,7 @@
                         android:textColor="@color/black" />
 
                     <com.faltenreich.skeletonlayout.SkeletonLayout
-                        android:id="@+id/skeletonDuration"
+                        android:id="@+id/skeletonCapital"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -168,7 +168,7 @@
                         android:textColor="@color/black" />
 
                     <com.faltenreich.skeletonlayout.SkeletonLayout
-                        android:id="@+id/skeletonDay"
+                        android:id="@+id/skeletonMoneda"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -220,6 +220,7 @@
                         android:textColor="@color/black" />
 
                     <com.faltenreich.skeletonlayout.SkeletonLayout
+                        android:id="@+id/skeletonCodigoTelefono"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
