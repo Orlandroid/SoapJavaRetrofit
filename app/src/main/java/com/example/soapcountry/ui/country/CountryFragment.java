@@ -39,6 +39,7 @@ public class CountryFragment extends Fragment implements AlertDialogMessage.Clic
         countryCode = CountryFragmentArgs.fromBundle(getArguments()).getCountryCode();
         countryName = CountryFragmentArgs.fromBundle(getArguments()).getCountryName();
         showSkeletons();
+        binding.toolbarLayout.backTextToolbar.setText("Atrás");
         binding.toolbarLayout.backIconToolbar.setOnClickListener(view -> {
             Navigation.findNavController(getView()).popBackStack();
         });
