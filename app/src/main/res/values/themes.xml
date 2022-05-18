@@ -15,7 +15,7 @@
     </style>
 
     <style name="AppTheme.PopupOverlay.toolbar" parent="ThemeOverlay.AppCompat.Light">
-        <item name="iconTint">#3F51B5</item>
+        <item name="iconTint">@color/black</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="colorAccent">@color/color_blue</item>
         <item name="android:textColorHint">@color/grayOption</item>
