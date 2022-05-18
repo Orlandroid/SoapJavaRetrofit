@@ -61,9 +61,7 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
     private void setUpUi() {
         viewModel.getCountrList();
         binding.progressBar.setVisibility(View.VISIBLE);
-        //binding.toolbarLayout.toolbarTitle.setText("Países");
         ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbarLayout.toolbar);
-        //((AppCompatActivity)getActivity()).getActionBar().setTitle("ddedede");
         countryAdapter = new CountryAdapter();
         countryAdapter.setListener(new CountryAdapter.ClickOnCountry() {
             @Override
@@ -150,9 +148,14 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public boolean onQueryTextChange(String newText) {
         if (newText.isEmpty()) {
+            Log.w("ANDORID","empty");
             mostrarItems(countryList);
         } else {
             if (countryAdapter.filter(newText).size() != 0) {
+                for (int i = 0; i < countryAdapter.filter(newText).size(); i++) {
+                    Log.w("COUNTRY",countryList.get(i).getsName());
+                    Log.w("COUNTRY",String.valueOf(countryList.size()));
+                }
                 binding.empty.setVisibility(View.INVISIBLE);
                 mostrarItems(countryAdapter.filter(newText));
             } else {
