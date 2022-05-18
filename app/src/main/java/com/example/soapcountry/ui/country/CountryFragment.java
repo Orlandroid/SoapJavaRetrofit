@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.soapcountry.R;
 import com.example.soapcountry.databinding.FragmentCountryBinding;
 import com.example.soapcountry.util.AlertDialogMessage;
 import com.squareup.picasso.Picasso;
@@ -36,6 +37,7 @@ public class CountryFragment extends Fragment implements AlertDialogMessage.Clic
     }
 
     private void setUpUi() {
+        binding.informationCard.setBackgroundResource(R.drawable.background_card);
         countryCode = CountryFragmentArgs.fromBundle(getArguments()).getCountryCode();
         countryName = CountryFragmentArgs.fromBundle(getArguments()).getCountryName();
         showSkeletons();
