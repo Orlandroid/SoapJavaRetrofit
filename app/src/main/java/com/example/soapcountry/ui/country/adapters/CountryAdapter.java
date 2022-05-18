@@ -90,7 +90,7 @@ public class CountryAdapter extends RecyclerView.Adapter {
 
         @SuppressLint("SetTextI18n")
         public void bindView(CountryCodeAndName country) {
-            name.setText(country.getsName()+"-"+country.getsISOCode());
+            name.setText(country.getsName()+" - "+country.getsISOCode());
         }
     }
 
