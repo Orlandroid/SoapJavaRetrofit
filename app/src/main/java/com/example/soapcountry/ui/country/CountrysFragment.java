@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class CountrysFragment extends Fragment implements SearchView.OnQueryTextListener , AlertDialogMessage.ClickOnDialog {
+public class CountrysFragment extends Fragment implements SearchView.OnQueryTextListener, AlertDialogMessage.ClickOnDialog {
 
     private FragmentCountrysBinding binding;
     private CountryViewModel viewModel;
@@ -61,7 +61,7 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
     private void setUpUi() {
         viewModel.getCountrList();
         binding.progressBar.setVisibility(View.VISIBLE);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbarLayout.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbarLayout.toolbar);
         countryAdapter = new CountryAdapter();
         countryAdapter.setListener(new CountryAdapter.ClickOnCountry() {
             @Override
@@ -74,6 +74,7 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
         binding.swiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                binding.empty.setVisibility(View.INVISIBLE);
                 countryAdapter.setData(new ArrayList<>());
                 viewModel.getCountrList();
                 binding.swiperefreshlayout.setRefreshing(false);
@@ -99,7 +100,7 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
             if (respose == null) {
                 return;
             }
-            alertDialogMessage = new AlertDialogMessage(respose,this);
+            alertDialogMessage = new AlertDialogMessage(respose, this);
             alertDialogMessage.show(requireFragmentManager(), "Dialog");
         });
     }

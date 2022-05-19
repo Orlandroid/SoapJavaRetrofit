@@ -86,7 +86,7 @@ public class CountryViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<ResponseCountryListEnvelop> call, Throwable t) {
-                _msjError.setValue(t.getMessage());
+                _msjError.setValue(ERROR_SERVIDOR);
                 _msjError.setValue(null);
             }
         });
