@@ -54,6 +54,10 @@ class MenuFragment : Fragment(), ClickOnItem<MenuAdapter.MenuElement> {
                 val action = MenuFragmentDirections.actionMenuFragmentToCountrysFragment()
                 findNavController().navigate(action)
             }
+            1 -> {
+                val action = MenuFragmentDirections.actionMenuFragmentToNumbersFragment()
+                findNavController().navigate(action)
+            }
         }
     }
 

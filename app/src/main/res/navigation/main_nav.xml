@@ -36,5 +36,13 @@
         <action
             android:id="@+id/action_menuFragment_to_countrysFragment"
             app:destination="@id/countrysFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_numbersFragment"
+            app:destination="@id/numbersFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/numbersFragment"
+        android:name="com.example.soapcountry.ui.numbers.NumbersFragment"
+        android:label="fragment_numbers"
+        tools:layout="@layout/fragment_numbers" />
 </navigation>

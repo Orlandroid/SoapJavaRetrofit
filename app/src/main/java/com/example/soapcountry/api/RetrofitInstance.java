@@ -25,6 +25,7 @@ public class RetrofitInstance {
     private static Strategy strategy = new AnnotationStrategy();
     private static Serializer serializer = new Persister(strategy);
     private static String BASE_URL = "http://webservices.oorsprong.org/websamples.countryinfo/";
+    private static String BASE_URL_NUMBERS_SERVICE = "https://www.dataaccess.com/webservicesserver/";
 
     public static CountrysService getCountryService() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -37,6 +38,20 @@ public class RetrofitInstance {
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL).client(client).build();
         return retrofit.create(CountrysService.class);
+    }
+
+
+    public static NumbersService getNumbersService() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        OkHttpClient client = getUnsafeOkHttpClient().addInterceptor(logging).build();
+        client.retryOnConnectionFailure();
+
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+                .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL_NUMBERS_SERVICE).client(client).build();
+        return retrofit.create(NumbersService.class);
     }
 
     //Client builder to read the sent and received body.
