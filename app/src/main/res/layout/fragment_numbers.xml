@@ -44,7 +44,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_covert_to_dollars"
-        app:layout_constraintStart_toStartOf="@+id/textFiel1"
+        app:layout_constraintStart_toStartOf="@+id/input_dollars"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <TextView
@@ -121,7 +121,7 @@
         app:layout_constraintTop_toTopOf="@+id/txt_dollars" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFiel1"
+        android:id="@+id/input_dollars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -149,9 +149,9 @@
         android:text="-"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textFiel1"
-        app:layout_constraintStart_toStartOf="@+id/textFiel1"
-        app:layout_constraintTop_toBottomOf="@+id/textFiel1" />
+        app:layout_constraintEnd_toEndOf="@+id/input_dollars"
+        app:layout_constraintStart_toStartOf="@+id/input_dollars"
+        app:layout_constraintTop_toBottomOf="@+id/input_dollars" />
 
     <ProgressBar
         android:visibility="gone"

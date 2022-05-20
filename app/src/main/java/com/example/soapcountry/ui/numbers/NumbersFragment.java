@@ -37,6 +37,10 @@ public class NumbersFragment extends Fragment {
             binding.progressBar2.setVisibility(View.VISIBLE);
             viewModel.numbersToWords(binding.txtWords.getEditText().getText().toString());
         });
+        binding.btnCovertToDollars.setOnClickListener(view -> {
+            binding.progressBar2.setVisibility(View.VISIBLE);
+            viewModel.numberToDollars(binding.inputDollars.getEditText().getText().toString());
+        });
         binding.toolbarLayout.backTextToolbar.setText("Atrás");
         binding.toolbarLayout.backIconToolbar.setOnClickListener(view -> {
             Navigation.findNavController(getView()).popBackStack();
@@ -57,6 +61,13 @@ public class NumbersFragment extends Fragment {
             }
             binding.progressBar2.setVisibility(View.INVISIBLE);
             binding.tvPalabras.setText(response);
+        });
+        viewModel.dollars().observe(getViewLifecycleOwner(), response -> {
+            if (response == null) {
+                return;
+            }
+            binding.progressBar2.setVisibility(View.INVISIBLE);
+            binding.tvDollars.setText(response);
         });
     }
 }
