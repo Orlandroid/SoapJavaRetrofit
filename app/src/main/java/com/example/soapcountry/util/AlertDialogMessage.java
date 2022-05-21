@@ -17,20 +17,29 @@ public class AlertDialogMessage extends DialogFragment {
         clickOnDialog = listener;
     }
 
+    public AlertDialogMessage(String message) {
+        this.message = message;
+    }
+
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        setCancelable(false);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(message).setTitle("Error")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        clickOnDialog.clickOnAcept();
+                        dialog.dismiss();
+                        if (clickOnDialog != null) {
+                            clickOnDialog.clickOnAcept();
+                        }
                     }
                 });
         return builder.create();
     }
 
     public interface ClickOnDialog {
-        public void clickOnAcept();
+        void clickOnAcept();
     }
 
 
