@@ -1,5 +1,9 @@
 package com.example.soapcountry.api;
 
+import com.example.soapcountry.api.services.CalculatorService;
+import com.example.soapcountry.api.services.CountrysService;
+import com.example.soapcountry.api.services.NumbersService;
+
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.convert.AnnotationStrategy;
 import org.simpleframework.xml.core.Persister;
@@ -22,10 +26,10 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class RetrofitInstance {
 
-    private static Strategy strategy = new AnnotationStrategy();
-    private static Serializer serializer = new Persister(strategy);
-    private static String BASE_URL = "http://webservices.oorsprong.org/websamples.countryinfo/";
-    private static String BASE_URL_NUMBERS_SERVICE = "https://www.dataaccess.com/webservicesserver/";
+    private static final Strategy strategy = new AnnotationStrategy();
+    private static final Serializer serializer = new Persister(strategy);
+    private static final String BASE_URL_NUMBERS_SERVICE = "https://www.dataaccess.com/webservicesserver/";
+    private static final String BASE_URL_CALCULATOR_ADD = "https://ecs.syr.edu/";
 
     public static CountrysService getCountryService() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -36,6 +40,7 @@ public class RetrofitInstance {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
                 .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
                 .addConverterFactory(GsonConverterFactory.create());
+        String BASE_URL = "http://webservices.oorsprong.org/websamples.countryinfo/";
         Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL).client(client).build();
         return retrofit.create(CountrysService.class);
     }
@@ -52,6 +57,19 @@ public class RetrofitInstance {
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL_NUMBERS_SERVICE).client(client).build();
         return retrofit.create(NumbersService.class);
+    }
+
+    public static CalculatorService getCalculatorAddService() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        OkHttpClient client = getUnsafeOkHttpClient().addInterceptor(logging).build();
+        client.retryOnConnectionFailure();
+
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+                .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL_CALCULATOR_ADD).client(client).build();
+        return retrofit.create(CalculatorService.class);
     }
 
     //Client builder to read the sent and received body.

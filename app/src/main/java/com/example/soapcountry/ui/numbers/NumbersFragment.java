@@ -37,15 +37,17 @@ public class NumbersFragment extends Fragment {
             Util.closeKeyboard(requireContext());
         });
         binding.btnConvertToWords.setOnClickListener(view -> {
-            binding.progressBar2.setVisibility(View.VISIBLE);
+            Util.hideKeyboard(requireActivity());
+            binding.progressWords.setVisibility(View.VISIBLE);
             viewModel.numbersToWords(binding.txtWords.getEditText().getText().toString());
         });
         binding.btnCovertToDollars.setOnClickListener(view -> {
+            Util.hideKeyboard(requireActivity());
             if (binding.inputDollars.getEditText().getText().toString().isEmpty()) {
                 Util.showToast("Debes ingresar un numero a convertir", requireContext());
                 return;
             }
-            binding.progressBar2.setVisibility(View.VISIBLE);
+            binding.progressDollars.setVisibility(View.VISIBLE);
             viewModel.numberToDollars(binding.inputDollars.getEditText().getText().toString());
         });
         binding.toolbarLayout.backTextToolbar.setText("Atrás");
@@ -60,20 +62,21 @@ public class NumbersFragment extends Fragment {
             if (respose == null) {
                 return;
             }
-            binding.progressBar2.setVisibility(View.INVISIBLE);
+            binding.progressWords.setVisibility(View.INVISIBLE);
+            binding.progressDollars.setVisibility(View.INVISIBLE);
         });
         viewModel.words().observe(getViewLifecycleOwner(), response -> {
             if (response == null) {
                 return;
             }
-            binding.progressBar2.setVisibility(View.INVISIBLE);
+            binding.progressWords.setVisibility(View.INVISIBLE);
             binding.tvPalabras.setText(response);
         });
         viewModel.dollars().observe(getViewLifecycleOwner(), response -> {
             if (response == null) {
                 return;
             }
-            binding.progressBar2.setVisibility(View.INVISIBLE);
+            binding.progressDollars.setVisibility(View.INVISIBLE);
             binding.tvDollars.setText(response);
         });
         viewModel.errorNetwork().observe(getViewLifecycleOwner(), response -> {

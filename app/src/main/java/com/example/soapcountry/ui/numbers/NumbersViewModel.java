@@ -55,6 +55,7 @@ public class NumbersViewModel extends ViewModel {
         requestNumbersToWords.setBody(new RequestNumbersToWords.Body());
         requestNumbersToWords.getBody().setNumberToWordsResponse(new RequestNumbersToWords.NumberToWords());
         requestNumbersToWords.getBody().getNumberToWordsResponse().setUbiNum(number);
+
         Call<ResponseNumbersToWordsEnvelope> call = RetrofitInstance.getNumbersService().numberToWords(requestNumbersToWords);
         RetrofitCallBack<ResponseNumbersToWordsEnvelope> retrofitCallBack = new RetrofitCallBack<>();
 

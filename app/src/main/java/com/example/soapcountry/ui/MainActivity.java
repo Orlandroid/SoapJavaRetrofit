@@ -1,4 +1,4 @@
-package com.example.soapcountry;
+package com.example.soapcountry.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 

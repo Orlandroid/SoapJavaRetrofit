@@ -58,6 +58,10 @@ class MenuFragment : Fragment(), ClickOnItem<MenuAdapter.MenuElement> {
                 val action = MenuFragmentDirections.actionMenuFragmentToNumbersFragment()
                 findNavController().navigate(action)
             }
+            2 -> {
+                val action = MenuFragmentDirections.actionMenuFragmentToCalculatorFragment()
+                findNavController().navigate(action)
+            }
         }
     }
 

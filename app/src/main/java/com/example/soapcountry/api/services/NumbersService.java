@@ -1,4 +1,4 @@
-package com.example.soapcountry.api;
+package com.example.soapcountry.api.services;
 
 import com.example.soapcountry.model.numbers.request.numberstodollars.RequestNumberToDollars;
 import com.example.soapcountry.model.numbers.request.numberstowords.RequestNumbersToWords;

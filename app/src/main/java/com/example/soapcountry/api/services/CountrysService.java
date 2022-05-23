@@ -1,4 +1,4 @@
-package com.example.soapcountry.api;
+package com.example.soapcountry.api.services;
 
 import com.example.soapcountry.model.request.capitalcity.RequestCapitalCity;
 import com.example.soapcountry.model.request.countryCurrency.RequestCountryCurrency;

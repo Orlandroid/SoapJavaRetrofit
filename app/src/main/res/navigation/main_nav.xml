@@ -39,10 +39,18 @@
         <action
             android:id="@+id/action_menuFragment_to_numbersFragment"
             app:destination="@id/numbersFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
     </fragment>
     <fragment
         android:id="@+id/numbersFragment"
         android:name="com.example.soapcountry.ui.numbers.NumbersFragment"
         android:label="fragment_numbers"
         tools:layout="@layout/fragment_numbers" />
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.example.soapcountry.ui.calculator.CalculatorFragment"
+        android:label="fragment_calculator"
+        tools:layout="@layout/fragment_calculator" />
 </navigation>
