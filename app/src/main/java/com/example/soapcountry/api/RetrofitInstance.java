@@ -30,6 +30,7 @@ public class RetrofitInstance {
     private static final Serializer serializer = new Persister(strategy);
     private static final String BASE_URL_NUMBERS_SERVICE = "https://www.dataaccess.com/webservicesserver/";
     private static final String BASE_URL_CALCULATOR_ADD = "https://ecs.syr.edu/";
+    private static final String BASE_URL_CALCULATOR = "http://www.dneonline.com/";
 
     public static CountrysService getCountryService() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -69,6 +70,19 @@ public class RetrofitInstance {
                 .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL_CALCULATOR_ADD).client(client).build();
+        return retrofit.create(CalculatorService.class);
+    }
+
+    public static CalculatorService getCalculatorService() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        OkHttpClient client = getUnsafeOkHttpClient().addInterceptor(logging).build();
+        client.retryOnConnectionFailure();
+
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+                .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL_CALCULATOR).client(client).build();
         return retrofit.create(CalculatorService.class);
     }
 

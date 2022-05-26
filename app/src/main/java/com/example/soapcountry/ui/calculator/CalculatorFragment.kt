@@ -52,11 +52,15 @@ class CalculatorFragment : Fragment() {
                 val number = binding.txtNumber.editText?.text.toString().toInt()
                 val number2 = binding.txtNumber2.editText?.text.toString().toInt()
                 binding.progressBar2.visibility = View.VISIBLE
-                binding.tvResult.text="-"
+                binding.tvResult.text = "-"
                 viewModel?.getAdd(number, number2)
             }
             btnRestar.setOnClickListener {
-
+                val number = binding.txtNumber.editText?.text.toString().toInt()
+                val number2 = binding.txtNumber2.editText?.text.toString().toInt()
+                binding.progressBar2.visibility = View.VISIBLE
+                binding.tvResult.text = "-"
+                viewModel?.getSubtract(number, number2)
             }
             btnMultiplicar.setOnClickListener {
 
@@ -109,7 +113,13 @@ class CalculatorFragment : Fragment() {
         }
         viewModel!!.resultAdd().observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.tvResult.text=it
+                binding.tvResult.text = it
+            }
+            binding.progressBar2.visibility = View.INVISIBLE
+        }
+        viewModel!!.resultSubtract().observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.tvResult.text = it
             }
             binding.progressBar2.visibility = View.INVISIBLE
         }

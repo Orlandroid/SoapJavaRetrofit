@@ -1,7 +1,9 @@
 package com.example.soapcountry.api.services;
 
 import com.example.soapcountry.model.calculator.request.RequestCalculatorAdd;
+import com.example.soapcountry.model.calculator.request.RequestCalculatorSubtract;
 import com.example.soapcountry.model.calculator.response.ResponseCalculatorAdd;
+import com.example.soapcountry.model.calculator.response.ResponseCalculatorSubtract;
 
 
 import retrofit2.Call;
@@ -14,5 +16,9 @@ public interface CalculatorService {
     @Headers({"Content-Type: text/xml", "Accept-Charset: utf-8"})
     @POST("faculty/fawcett/Handouts/cse775/code/calcWebService/Calc.asmx")
     Call<ResponseCalculatorAdd> getAdd(@Body RequestCalculatorAdd body);
+
+    @Headers({"Content-Type: text/xml", "Accept-Charset: utf-8"})
+    @POST("calculator.asmx")
+    Call<ResponseCalculatorSubtract> getSubtract(@Body RequestCalculatorSubtract body);
 
 }
