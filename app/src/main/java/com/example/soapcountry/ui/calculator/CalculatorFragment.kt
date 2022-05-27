@@ -49,24 +49,37 @@ class CalculatorFragment : Fragment() {
                 findNavController().popBackStack()
             }
             btnSumar.setOnClickListener {
-                val number = binding.txtNumber.editText?.text.toString().toInt()
-                val number2 = binding.txtNumber2.editText?.text.toString().toInt()
-                binding.progressBar2.visibility = View.VISIBLE
-                binding.tvResult.text = "-"
-                viewModel?.getAdd(number, number2)
+                doActionCalculator("suma")
             }
             btnRestar.setOnClickListener {
-                val number = binding.txtNumber.editText?.text.toString().toInt()
-                val number2 = binding.txtNumber2.editText?.text.toString().toInt()
-                binding.progressBar2.visibility = View.VISIBLE
-                binding.tvResult.text = "-"
-                viewModel?.getSubtract(number, number2)
+                doActionCalculator("resta")
             }
             btnMultiplicar.setOnClickListener {
-
+                doActionCalculator("multiplicar")
             }
             btnDividir.setOnClickListener {
+                doActionCalculator("division")
+            }
+        }
+    }
 
+    private fun doActionCalculator(opertion: String) {
+        val number = binding.txtNumber.editText?.text.toString().toInt()
+        val number2 = binding.txtNumber2.editText?.text.toString().toInt()
+        binding.progressBar2.visibility = View.VISIBLE
+        binding.tvResult.text = "-"
+        when (opertion) {
+            "suma" -> {
+                viewModel?.getAdd(number, number2)
+            }
+            "resta" -> {
+                viewModel?.getSubtract(number, number2)
+            }
+            "multiplicar" -> {
+                viewModel?.getMultiply(number, number2)
+            }
+            "division" -> {
+                viewModel?.getDivide(number, number2)
             }
         }
     }
@@ -96,6 +109,13 @@ class CalculatorFragment : Fragment() {
         }
     }
 
+    private fun setResult(result: String?) {
+        if (result != null) {
+            binding.tvResult.text = result
+        }
+        binding.progressBar2.visibility = View.INVISIBLE
+    }
+
     private fun setUpObservers() {
         viewModel?.errorNetwork()?.observe(viewLifecycleOwner) {
             if (it == null) {
@@ -110,18 +130,20 @@ class CalculatorFragment : Fragment() {
                 return@observe
             }
             binding.progressBar2.visibility = View.INVISIBLE
+            alertDialogMessage = AlertDialogMessage("Error al obtener datos del servidor")
+            alertDialogMessage!!.show(requireFragmentManager(), "Dialog")
         }
         viewModel!!.resultAdd().observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.tvResult.text = it
-            }
-            binding.progressBar2.visibility = View.INVISIBLE
+            setResult(it)
         }
         viewModel!!.resultSubtract().observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.tvResult.text = it
-            }
-            binding.progressBar2.visibility = View.INVISIBLE
+            setResult(it)
+        }
+        viewModel!!.resultMultiply().observe(viewLifecycleOwner) {
+            setResult(it)
+        }
+        viewModel!!.resultDivide().observe(viewLifecycleOwner) {
+            setResult(it)
         }
     }
 

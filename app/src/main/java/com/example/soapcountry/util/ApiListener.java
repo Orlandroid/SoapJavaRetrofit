@@ -6,4 +6,5 @@ public interface ApiListener<T> {
     void onFailure(String error);
 
     void ErrorNetwork(String mesage);
+
 }

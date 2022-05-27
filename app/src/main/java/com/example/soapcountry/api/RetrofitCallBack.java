@@ -1,6 +1,7 @@
 package com.example.soapcountry.api;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.soapcountry.util.ApiListener;
 import com.example.soapcountry.util.Util;
@@ -30,6 +31,7 @@ public class RetrofitCallBack<T> {
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
+                Log.i("ERROR",t.getMessage());
                 listener.onFailure(ERROR_SERVIDOR);
             }
         });
