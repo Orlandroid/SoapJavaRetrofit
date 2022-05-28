@@ -3,6 +3,7 @@ package com.example.soapcountry.api;
 import com.example.soapcountry.api.services.CalculatorService;
 import com.example.soapcountry.api.services.CountrysService;
 import com.example.soapcountry.api.services.NumbersService;
+import com.example.soapcountry.api.services.TemperatureService;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.convert.AnnotationStrategy;
@@ -31,6 +32,7 @@ public class RetrofitInstance {
     private static final String BASE_URL_NUMBERS_SERVICE = "https://www.dataaccess.com/webservicesserver/";
     private static final String BASE_URL_CALCULATOR_ADD = "https://ecs.syr.edu/";
     private static final String BASE_URL_CALCULATOR = "http://www.dneonline.com/";
+    private static final String BASE_URL_TEMPERATURE = "https://www.w3schools.com/xml/";
 
     public static CountrysService getCountryService() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -84,6 +86,20 @@ public class RetrofitInstance {
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL_CALCULATOR).client(client).build();
         return retrofit.create(CalculatorService.class);
+    }
+
+
+    public static TemperatureService getTemperatureService() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        OkHttpClient client = getUnsafeOkHttpClient().addInterceptor(logging).build();
+        client.retryOnConnectionFailure();
+
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+                .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = retrofitBuilder.baseUrl(BASE_URL_TEMPERATURE).client(client).build();
+        return retrofit.create(TemperatureService.class);
     }
 
     //Client builder to read the sent and received body.

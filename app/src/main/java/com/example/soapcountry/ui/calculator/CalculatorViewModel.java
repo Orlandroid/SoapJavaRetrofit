@@ -20,7 +20,7 @@ import com.example.soapcountry.util.ApiListener;
 
 import retrofit2.Call;
 
-public class CalculatorViewModel extends ViewModel {
+public class CalculatorViewModel extends ViewModel{
 
 
     public Context context;
@@ -187,6 +187,4 @@ public class CalculatorViewModel extends ViewModel {
         });
 
     }
-
-
 }

@@ -18,6 +18,7 @@ public class RetrofitCallBack<T> {
     public void callRetrofit(Context context, Call<T> call, ApiListener<T> listener) {
         if (!Util.isNetworkConnected(context)) {
             listener.ErrorNetwork(ERROR_CONECXION);
+            return;
         }
         call.enqueue(new Callback<T>() {
             @Override
@@ -31,7 +32,7 @@ public class RetrofitCallBack<T> {
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                Log.i("ERROR",t.getMessage());
+                Log.i("ERROR ANDROID",t.getMessage());
                 listener.onFailure(ERROR_SERVIDOR);
             }
         });

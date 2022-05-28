@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_menuFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_temperatureFragment"
+            app:destination="@id/temperatureFragment" />
     </fragment>
     <fragment
         android:id="@+id/numbersFragment"
@@ -53,4 +56,9 @@
         android:name="com.example.soapcountry.ui.calculator.CalculatorFragment"
         android:label="fragment_calculator"
         tools:layout="@layout/fragment_calculator" />
+    <fragment
+        android:id="@+id/temperatureFragment"
+        android:name="com.example.soapcountry.ui.temperature.TemperatureFragment"
+        android:label="fragment_temperature"
+        tools:layout="@layout/fragment_temperature" />
 </navigation>
