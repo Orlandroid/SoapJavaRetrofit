@@ -9,6 +9,8 @@ import com.example.soapcountry.model.temperature.request.RequestCelsiustoFarenhe
 import com.example.soapcountry.model.temperature.request.RequestFarenheittoCelsius
 import com.example.soapcountry.model.temperature.response.ResponseCelsiustoFarenheit
 import com.example.soapcountry.model.temperature.response.ResponseFarenheittoCelsius
+import com.example.soapcountry.model.webservices.helloname.HelloNameRequest
+import com.example.soapcountry.model.webservices.helloname.HelloNameResponse
 import com.example.soapcountry.util.ApiListener
 
 class TemperatureViewModel : ViewModel() {
@@ -30,6 +32,10 @@ class TemperatureViewModel : ViewModel() {
     private val _errorNetwork = MutableLiveData<String?>()
     val errorNetwork: MutableLiveData<String?>
         get() = _errorNetwork
+
+    private val _helloNameResponse = MutableLiveData<HelloNameResponse?>()
+    val helloNameResponse: MutableLiveData<HelloNameResponse?>
+        get() = _helloNameResponse
 
 
     fun celsiustoFarenheit(celsius: String) {
@@ -80,8 +86,41 @@ class TemperatureViewModel : ViewModel() {
             call,
             object : ApiListener<ResponseFarenheittoCelsius> {
                 override fun onResponse(response: ResponseFarenheittoCelsius) {
-                    _farenheittoCelsius.value = response.body.fahrenheitToCelsiusResponse.fahrenheitToCelsiusResult
+                    _farenheittoCelsius.value =
+                        response.body.fahrenheitToCelsiusResponse.fahrenheitToCelsiusResult
                     _farenheittoCelsius.value = null
+                }
+
+                override fun onFailure(error: String) {
+                    _msjError.value = error
+                    _msjError.value = null
+
+                }
+
+                override fun ErrorNetwork(mesage: String) {
+                    _errorNetwork.value = mesage
+                    _errorNetwork.value = null
+                }
+
+            })
+    }
+
+    fun helloName(name: String) {
+        val helloRequest = HelloNameRequest()
+        helloRequest.header = HelloNameRequest.Header()
+        helloRequest.body = HelloNameRequest.Body()
+        helloRequest.body!!.helloRequest = HelloNameRequest.HelloRequest()
+        helloRequest.body!!.helloRequest?.name =name
+        val call =
+            RetrofitInstance.getWebServices().helloName(helloRequest)
+        val retrofitCallBack = RetrofitCallBack<HelloNameResponse>()
+        retrofitCallBack.callRetrofit(
+            context,
+            call,
+            object : ApiListener<HelloNameResponse> {
+                override fun onResponse(response: HelloNameResponse) {
+                    _helloNameResponse.value=response
+                    _helloNameResponse.value = null
                 }
 
                 override fun onFailure(error: String) {
