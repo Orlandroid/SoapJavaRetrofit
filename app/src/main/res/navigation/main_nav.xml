@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_menuFragment_to_temperatureFragment"
             app:destination="@id/temperatureFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_helloFragment"
+            app:destination="@id/helloFragment" />
     </fragment>
     <fragment
         android:id="@+id/numbersFragment"
@@ -61,4 +64,9 @@
         android:name="com.example.soapcountry.ui.temperature.TemperatureFragment"
         android:label="fragment_temperature"
         tools:layout="@layout/fragment_temperature" />
+    <fragment
+        android:id="@+id/helloFragment"
+        android:name="com.example.soapcountry.ui.hello.HelloFragment"
+        android:label="fragment_hello"
+        tools:layout="@layout/fragment_hello" />
 </navigation>

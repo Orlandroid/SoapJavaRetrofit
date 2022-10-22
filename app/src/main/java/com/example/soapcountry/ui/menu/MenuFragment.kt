@@ -60,7 +60,9 @@ class MenuFragment : Fragment(), ClickOnItem<MenuAdapter.MenuElement> {
         val numbers = MenuAdapter.MenuElement("Numbers", R.drawable.number_blocks)
         val calculator = MenuAdapter.MenuElement("Calculator", R.drawable.calculator)
         val temperature = MenuAdapter.MenuElement("Temperature", R.drawable.temperature)
-        return listOf(countrys, numbers, calculator, temperature)
+        val findAperson = MenuAdapter.MenuElement("Find a person", R.drawable.people)
+        val helloName = MenuAdapter.MenuElement("Hello name", R.drawable.hello)
+        return listOf(countrys, numbers, calculator, temperature, findAperson, helloName)
     }
 
     override fun onDestroyView() {
@@ -84,6 +86,14 @@ class MenuFragment : Fragment(), ClickOnItem<MenuAdapter.MenuElement> {
             }
             3 -> {
                 val action = MenuFragmentDirections.actionMenuFragmentToTemperatureFragment()
+                findNavController().navigate(action)
+            }
+            4 -> {
+                val action = MenuFragmentDirections.actionMenuFragmentToTemperatureFragment()
+                findNavController().navigate(action)
+            }
+            5 -> {
+                val action = MenuFragmentDirections.actionMenuFragmentToHelloFragment()
                 findNavController().navigate(action)
             }
         }
