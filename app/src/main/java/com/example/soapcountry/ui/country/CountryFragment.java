@@ -2,19 +2,19 @@ package com.example.soapcountry.ui.country;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.soapcountry.R;
 import com.example.soapcountry.databinding.FragmentCountryBinding;
 import com.example.soapcountry.util.AlertDialogMessage;
-import com.squareup.picasso.Picasso;
 
 
 public class CountryFragment extends Fragment implements AlertDialogMessage.ClickOnDialog {
@@ -66,8 +66,8 @@ public class CountryFragment extends Fragment implements AlertDialogMessage.Clic
             if (response == null) {
                 return;
             }
-            Picasso.get().load(response.getCountryFlagResultUrl()).into(binding.imageView);
             binding.skeletonImage.showOriginal();
+            Glide.with(requireContext()).load(response.getCountryFlagResultUrl()).transition(DrawableTransitionOptions.withCrossFade()).placeholder(R.drawable.loading_animation).into(binding.imageView);
         });
         viewModel.capitalCity().observe(getViewLifecycleOwner(), response -> {
             if (response == null) {

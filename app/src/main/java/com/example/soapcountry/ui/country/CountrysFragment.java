@@ -90,7 +90,6 @@ public class CountrysFragment extends Fragment implements SearchView.OnQueryText
                 return;
             }
             binding.progressBar.setVisibility(View.INVISIBLE);
-            //eliminamos elementos para evitar duplicador
             countryList.clear();
             countryList.addAll(response.getBody().getListOfCountryNamesByNameResponse().getListOfCountryNamesByNameResponse().getCountryCodeAndName());
             Collections.sort(countryList, CountryCodeAndName.SortDecending);
