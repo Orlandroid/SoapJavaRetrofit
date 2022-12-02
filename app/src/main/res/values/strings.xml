@@ -6,4 +6,20 @@
     <string name="hello">Hello</string>
     <string name="send">Send</string>
     <string name="ingresa_tu_nombre">Ingresa tu nombre</string>
+    <string name="hoy">Hoy</string>
+    <string name="numero_1">numero 1</string>
+    <string name="numero_2">numero 2</string>
+    <string name="sumar">Sumar</string>
+    <string name="restar">Restar</string>
+    <string name="multiplicar">Multiplicar</string>
+    <string name="dividir">Dividir</string>
+    <string name="aplicaciones">Aplicaciones</string>
+    <string name="ingresa_el_numero_a_convertir_a_dollars">Ingresa el numero a convertir a dollars</string>
+    <string name="ingresa_el_numero_a_convertir_a_palabras">Ingresa el numero a convertir a palabras</string>
+    <string name="convertir">Convertir</string>
+    <string name="temperature">Temperature</string>
+    <string name="enter_temperature">Enter temperature</string>
+    <string name="c">C</string>
+    <string name="f">F</string>
+    <string name="menu">Menu</string>
 </resources>

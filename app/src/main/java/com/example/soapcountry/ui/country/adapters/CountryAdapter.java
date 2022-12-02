@@ -56,13 +56,7 @@ public class CountryAdapter extends RecyclerView.Adapter {
             ((HeaderViewHolder) holder).BindView(filteredList.get(position));
         } else {
             ((CountryViewHolder) holder).bindView(filteredList.get(position));
-            ((CountryViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    itemListener.clikOnTransport(filteredList.get(holder.getAdapterPosition()));
-                }
-            });
-
+            holder.itemView.setOnClickListener(v -> itemListener.clikOnTransport(filteredList.get(holder.getAdapterPosition())));
         }
     }
 

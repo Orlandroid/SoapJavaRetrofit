@@ -1,12 +1,10 @@
 package com.example.soapcountry.ui.menu
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,7 +13,6 @@ import com.example.soapcountry.databinding.FragmentMenuBinding
 import com.example.soapcountry.ui.temperature.TemperatureViewModel
 import com.example.soapcountry.util.AlertDialogMessage
 import com.example.soapcountry.util.ClickOnItem
-import com.example.soapcountry.util.Util
 
 
 class MenuFragment : Fragment(), ClickOnItem<MenuAdapter.MenuElement> {
@@ -41,7 +38,6 @@ class MenuFragment : Fragment(), ClickOnItem<MenuAdapter.MenuElement> {
         binding.recyclerMenu.adapter = adapter
         binding.recyclerMenu.layoutManager = GridLayoutManager(requireContext(), 2)
         adapter.setData(setMenus())
-        viewModel?.helloName("Orlando")
     }
 
     private fun setUpObservers() {

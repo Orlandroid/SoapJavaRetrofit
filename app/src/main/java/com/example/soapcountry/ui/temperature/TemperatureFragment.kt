@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.soapcountry.databinding.FragmentTemperatureBinding
 import com.example.soapcountry.util.AlertDialogMessage
 import com.example.soapcountry.util.Util
@@ -36,6 +37,9 @@ class TemperatureFragment : Fragment() {
         with(binding) {
             binding.root.setOnClickListener {
                 Util.hideKeyboard(requireActivity())
+            }
+            toolbarLayout.backIconToolbar.setOnClickListener {
+                findNavController().popBackStack()
             }
             inputTemperature.editText?.doOnTextChanged { text, start, count, after ->
                 val temperature = binding.inputTemperature.editText?.text.toString()
