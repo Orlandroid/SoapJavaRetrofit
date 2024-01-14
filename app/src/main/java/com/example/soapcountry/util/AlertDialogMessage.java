@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.Objects;
+
 public class AlertDialogMessage extends DialogFragment {
 
     private String message;
@@ -25,14 +27,12 @@ public class AlertDialogMessage extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         setCancelable(false);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setMessage(message).setTitle("Error")
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                        if (clickOnDialog != null) {
-                            clickOnDialog.clickOnAcept();
-                        }
+                .setPositiveButton("Ok", (dialog, id) -> {
+                    dialog.dismiss();
+                    if (clickOnDialog != null) {
+                        clickOnDialog.clickOnAcept();
                     }
                 });
         return builder.create();

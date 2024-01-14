@@ -14,12 +14,7 @@ public class CountryCodeAndName {
     @Element(name = "sName")
     private String sName;
 
-    public static Comparator<CountryCodeAndName> SortDecending = new Comparator<CountryCodeAndName>() {
-        @Override
-        public int compare(CountryCodeAndName t1, CountryCodeAndName t2) {
-            return t1.getsName().compareTo(t2.getsName());
-        }
-    };
+    public static Comparator<CountryCodeAndName> SortDecending = (t1, t2) -> t1.getsName().compareTo(t2.getsName());
 
     public Integer getTypeOfView() {
         return typeOfView;
